@@ -35,17 +35,28 @@ public class Junit {
     public void operationWithDifferentPrioritiesAreCorrectWhenSimpleExampleIsGiven3 (){
         assertEquals("-144/145", Calculator.Evaluate("2/5 / ( 3/8 - 7/9 )").toString(), "Calculator works incorrectly" );}
 
-    @Test
+    /*@Test
     public void operationIsIncorrectWhenInvalidSymbolsAreEntered () {
         Throwable exception = assertThrows(ArithmeticException.class, () -> {
             throw new ArithmeticException("1/2 = 1/3");});
-        assertNotEquals("1/2 + 1/3", exception.getMessage());}
+        assertNotEquals("1/2 + 1/3", exception.getMessage());}/*
 
-    @Test
+    /*@Test
     public void operationIsIncorrectWhenInvalidNotNumbersAreEntered () {
         Throwable exception = assertThrows(ArithmeticException.class, () -> {
             throw new ArithmeticException("a/b + 1/3");});
-        assertNotEquals("1/2 + 1/3", exception.getMessage());}
+        assertNotEquals("1/2 + 1/3", exception.getMessage());}*/
+    @Test
+    public void operationIsIncorrectWhenInvalidSymbolsAreEntered (){
+        assertThrows(NumberFormatException.class, ()-> {
+            Calculator.Evaluate("1/2 $ 3/7");
+        });}
+
+    @Test
+    public void operationIsIncorrectWhenNotNumbersAreEntered (){
+        assertThrows(NumberFormatException.class, ()-> {
+            Calculator.Evaluate("a/b - 3/7");
+        });}
 
     @Test
     @DisplayName("Division by Zero")
