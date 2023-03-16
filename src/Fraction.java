@@ -4,6 +4,7 @@ public class Fraction {
 
     public Fraction(int Numerator, int Denominator) {
         if (Denominator == 0) throw new ArithmeticException("Знаменатель не может быть равен 0");
+        if (Denominator < 0 ){Numerator*=-1;Denominator*=-1;}
         this.Numerator = Numerator;
         this.Denominator = Denominator;
     }
@@ -35,7 +36,6 @@ public class Fraction {
         var firstNumerator = first.Numerator * second.Denominator;
         var secondNumerator = second.Numerator * first.Denominator;
         var finalNumerator = firstNumerator - secondNumerator;
-        if ((first.Numerator == 0 && second.Numerator == 0) | finalNumerator == 0) {return new Fraction(0,newDenominator) ;}
         var finalDenominator = newDenominator;
         return new Fraction(finalNumerator/GreatestCommonDivisor(finalNumerator, finalDenominator), finalDenominator/GreatestCommonDivisor(finalNumerator, finalDenominator));
 
@@ -53,7 +53,7 @@ public class Fraction {
         return Fraction.Divide (this, other);}
 
     public static Fraction Divide (Fraction first, Fraction second){
-        if (second.Numerator == 0) throw new ArithmeticException("Знаменатель не может быть равен 0");
+        if (second.Numerator == 0) throw new ArithmeticException("Ошибка. Деление на 0.");
         var finalNumerator = first.Numerator*second.Denominator;
         var finalDenominator = first.Denominator*second.Numerator;
         if (first.Numerator == 0) {return new Fraction(0,finalDenominator) ;}
@@ -63,7 +63,6 @@ public class Fraction {
         do {if (Math.abs(a) > Math.abs(b)) a %= b;
             else b %= a;} while (a != 0 && b != 0);
                 return a + b;}
-
 
         @Override
     public String toString() {
